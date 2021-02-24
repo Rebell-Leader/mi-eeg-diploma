@@ -53,7 +53,10 @@ class BandCNN(nn.Module):
 
     def forward(self, X):
         # X in NHW shape
-        X = X.view(-1, 1, *X.size()[1:])
+
+        print(X.shape)
+        # X = X.view(-1, 1, *X.size()[1:])
+        print(X.shape)
 
         out1 = self.scale_cnn1(X)
         out2 = self.scale_cnn2(X)
