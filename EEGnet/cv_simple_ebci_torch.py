@@ -11,7 +11,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.split(os.getcwd())[0], 'data_loader'))
 
-from data import DataBuildClassifier
+# from data import DataBuildClassifier
 
 
 def prepare_dirs(experiment_res_dir, train_subject):
