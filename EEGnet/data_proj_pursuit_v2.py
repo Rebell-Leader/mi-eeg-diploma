@@ -19,7 +19,7 @@ class DataProjPursuit_v2(Data):
         X = X - baseline
         return X
 
-    def get_event_data(self, subj, event, resample_to=None, window=(-0.2, 0), eeg_ch=range(19),
+    def get_event_data(self, subj, event, resample_to=None, window=(-1.2, 1.2), eeg_ch=range(21),
                        baseline_window=(-0.4, -0.3), shuffle=False):
         '''
 
@@ -37,7 +37,7 @@ class DataProjPursuit_v2(Data):
         eeg = loadmat(os.path.join(self.path_to_data, '%s' % subj, '%s.mat' % event))['EEG']
         eeg = eeg.astype('float64')
         print(np.shape(eeg))
-        eeg = eeg[:, eeg_ch, :]
+        eeg = eeg[:, :, eeg_ch]
         if len(baseline_window):
             eeg = self._baseline_normalization(eeg, baseline_window)
         if (resample_to is not None) and (resample_to != self.sample_rate):
@@ -52,7 +52,7 @@ class DataProjPursuit_v2(Data):
         end_window_ind = int((win_end - self.start_epoch) * current_sample_rate)
         time_indices.extend(range(start_window_ind, end_window_ind))
         print(time_indices)
-        eeg = eeg[time_indices, :, :]
+        eeg = eeg[:, time_indices, :]
 
         # if shuffle:
         #     X, y = data_shuffle(X, y)
