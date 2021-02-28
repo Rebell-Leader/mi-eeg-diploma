@@ -33,8 +33,8 @@ class DataProjPursuit_v2(Data):
         # data_mat = loadmat(os.path.join(self.path_to_data, 'clean_data.mat'))
         # eeg = data_mat['all_EEG_online'][]
         # eeg = loadmat(os.path.join(self.path_to_data, 'subj %d' % subj, '%s.mat' % event))['EEG']
-        print(loadmat(os.path.join(self.path_to_data, '%d' % subj, '%s.mat' % event))['eegT'])
-        eeg = loadmat(os.path.join(self.path_to_data, '%d' % subj, '%s.mat' % event))['eegT']
+        print(loadmat(os.path.join(self.path_to_data, '%s' % subj, '%s.mat' % event))['EEG'])
+        eeg = loadmat(os.path.join(self.path_to_data, '%s' % subj, '%s.mat' % event))['EEG']
         eeg = eeg.astype('float64')
         print(np.shape(eeg))
         eeg = eeg[:, eeg_ch, :]
